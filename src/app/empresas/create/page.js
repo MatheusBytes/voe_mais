@@ -1,7 +1,8 @@
 
 'use client'
 
-import Pagina from "@/components/Pagina";
+
+import Pagina from "@/app/components/Pagina";
 import { Formik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
