@@ -1,6 +1,4 @@
-
 'use client'
-
 
 import Pagina from "@/app/components/Pagina";
 import { Formik } from "formik";
