@@ -10,10 +10,8 @@ export default function Pagina(props) {
             <Nav.Link href="/empresas">Empresas</Nav.Link>
             <Nav.Link href="/aeroporto">Aeroportos</Nav.Link>
             <Nav.Link href="/passageiro">Passageiros</Nav.Link>
-            <Nav.Link href="/"></Nav.Link>
-            <Nav.Link href="/"></Nav.Link>
-            <Nav.Link href="/"></Nav.Link>
-            <Nav.Link href="/"></Nav.Link>  
+            <Nav.Link href="/voo">Voos</Nav.Link>
+            <Nav.Link href="/passagem">Passagens</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
