@@ -12,10 +12,10 @@ export default function Page() {
   const route = useRouter();
 
   function salvar(dados) {
-    const voos = JSON.parse(localStorage.getItem("voos")) || []; // Usar "voos" como chave
+    const voos = JSON.parse(localStorage.getItem("voos")) || []; 
     voos.push(dados);
     localStorage.setItem("voos", JSON.stringify(voos));
-    return route.push("/voo"); // Redirecionar para a página de voos
+    return route.push("/voo"); 
   }
 
   return (
