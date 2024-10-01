@@ -11,12 +11,12 @@ export default function Page() {
   const empresas = JSON.parse(localStorage.getItem("empresas")) || [];
 
   function excluir(id) {
-    if (confirm('Deseja realmente excluir o registro?')) {
-        const dados = empresas.filter(item => item.id != id)
-        localStorage.setItem('empresas', JSON.stringify(dados))
-        setEmpresas(dados)
+    if (confirm("Deseja realmente excluir o registro?")) {
+      const dados = empresas.filter((item) => item.id != id);
+      localStorage.setItem("empresas", JSON.stringify(dados));
+      setEmpresas(dados);
     }
-}
+  }
   return (
     <Pagina titulo="Empresas">
       <Link href="/empresas/create" className="btn btn-primary mb-3 mt-3">
@@ -32,15 +32,19 @@ export default function Page() {
           </tr>
         </thead>
         <tbody>
-          {empresas.map((item,i ) => (
+          {empresas.map((item, i) => (
             <tr key={item.id}>
               <td>
-                {item.id} - 
-              <FaRegEdit  className="text-primary"/>
-              <AiOutlineDelete className='text-danger'
-              name="deletar"
-
-              />
+                {item.id} -
+                <FaRegEdit 
+                className="text-primary" 
+                title="editar" 
+                />
+                <AiOutlineDelete
+                  className="text-danger"
+                  title="Excluir"
+                  onClick={() => excluir(item.id)}
+                />
               </td>
               <td>{item.nome}</td>
               <td>
