@@ -4,9 +4,15 @@ import Link from "next/link";
 import { Table } from "react-bootstrap";
 import { FaPlusCircle } from "react-icons/fa";
 import Pagina from "../components/Pagina";
+import { AiOutlineDelete } from "react-icons/ai";
+import { FaRegEdit } from "react-icons/fa";
 
 export default function Page() {
   const empresas = JSON.parse(localStorage.getItem("empresas")) || [];
+
+  function excluir(id){
+    if(confirm(''))
+  }
 
   return (
     <Pagina titulo="Empresas">
@@ -23,9 +29,16 @@ export default function Page() {
           </tr>
         </thead>
         <tbody>
-          {empresas.map((item) => (
-            <tr>
-              <td>1</td>
+          {empresas.map((item,i ) => (
+            <tr key={item.id}>
+              <td>
+                {item.id} - 
+              <FaRegEdit  className="text-primary"/>
+              <AiOutlineDelete className='text-danger'
+              name="deletar"
+
+              />
+              </td>
               <td>{item.nome}</td>
               <td>
                 <a href={item.site} target="_blank">

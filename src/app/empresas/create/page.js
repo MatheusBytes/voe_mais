@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import { Button, Form } from "react-bootstrap";
 import { FaCheck } from "react-icons/fa";
 import { MdOutlineArrowBack } from "react-icons/md";
+import { v4 } from "uuid";
+
 
 export default function Page() {
 
@@ -14,9 +16,12 @@ export default function Page() {
 
     function salvar(dados) {
         const empresas = JSON.parse(localStorage.getItem('empresas')) || []
+        
+        dados.id = v4()
+        
         empresas.push(dados)
-        localStorage.setItem('empresas', JSON.stringify(empresas))
-        return route.push('/empresas')
+        // localStorage.setItem('empresas', JSON.stringify(empresas))
+        // return route.push('/empresas')
     }
 
     return (
@@ -41,6 +46,7 @@ export default function Page() {
                                 onChange={handleChange('nome')}
                             />
                         </Form.Group>
+
                         <Form.Group className="mb-3" controlId="logo">
                             <Form.Label>Logo</Form.Label>
                             <Form.Control
@@ -50,6 +56,7 @@ export default function Page() {
                                 onChange={handleChange('logo')}
                             />
                         </Form.Group>
+                        
                         <Form.Group className="mb-3" controlId="site">
                             <Form.Label>Site</Form.Label>
                             <Form.Control
