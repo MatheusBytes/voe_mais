@@ -6,9 +6,14 @@ import { FaPlusCircle } from "react-icons/fa";
 import Pagina from "../components/Pagina";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FaRegEdit } from "react-icons/fa";
+import { useEffect, useState } from "react";
 
 export default function Page() {
-  const empresas = JSON.parse(localStorage.getItem("empresas")) || [];
+  const [empresas, setEmpresas] = useState([]);
+
+  useEffect(() => {
+    setEmpresas(JSON.parse(localStorage.getItem("empresas")) || []);
+  }, []);
 
   function excluir(id) {
     if (confirm("Deseja realmente excluir o registro?")) {
@@ -35,11 +40,11 @@ export default function Page() {
           {empresas.map((item, i) => (
             <tr key={item.id}>
               <td>
-                {item.id} -
-                <FaRegEdit 
-                className="text-primary" 
-                title="editar" 
-                />
+                
+                <Link href={`/empresas/edit/${item.id}`}>
+                  <FaRegEdit title="Editar" className="text-primary" />
+                </Link>
+
                 <AiOutlineDelete
                   className="text-danger"
                   title="Excluir"
