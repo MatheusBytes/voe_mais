@@ -1,6 +1,5 @@
 'use client'
 
-
 import Pagina from "@/app/components/Pagina";
 import { Formik } from "formik";
 import Link from "next/link";
@@ -8,35 +7,32 @@ import { useRouter } from "next/navigation";
 import { Button, Form } from "react-bootstrap";
 import { FaCheck } from "react-icons/fa";
 import { MdOutlineArrowBack } from "react-icons/md";
+import { v4 } from "uuid";
 
-export default function Page() {
+export default function Page({ params }) {
 
-    const route = useRouter()
+    const route = useRouter();
 
-    const aeroportos = JSON.parse(localStorage.getItem('aeroportos')) || []
-    const dados = aeroportos.find(item=>item.id == params.id)
-    const aeroporto = dados || { nome: '', sigla: '', UF: '', Cidade: '', Pais: "", }
-
+    const aeroportos = JSON.parse(localStorage.getItem('aeroportos')) || [];
+    const dados = aeroportos.find(item => item.id == params.id);
+    const aeroporto = dados || { nome: '', sigla: '', uf: '', cidade: '', pais: '' };
 
     function salvar(dados) {
-
-        if(aeroporto.id){
-            Object.assign(aeroporto, dados)
-
+        if (aeroporto.id) {
+            Object.assign(aeroporto, dados);
         } else {
-            dados.id = v4()
-            aeroporto.push(dados)
+            dados.id = v4();
+            aeroportos.push(dados);
         }
-       
-        localStorage.setItem('aeroporto', JSON.stringify(aeroportos))
-        return route.push('/aeroporto')
-    
+
+        localStorage.setItem('aeroportos', JSON.stringify(aeroportos));
+        return route.push('/aeroportos');
     }
-    }
+
+
 
     return (
-        <Pagina titulo="aeroporto">
-
+        <Pagina titulo="Aeroporto">
             <Formik
                 initialValues={aeroporto}
                 onSubmit={values => salvar(values)}
@@ -49,66 +45,59 @@ export default function Page() {
                     <Form>
                         <Form.Group className="mb-3" controlId="nome">
                             <Form.Label>Nome</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="nome"
+                            <Form.Control 
+                                type="text" 
+                                name="nome" 
                                 value={values.nome}
                                 onChange={handleChange('nome')}
                             />
                         </Form.Group>
-
-
                         <Form.Group className="mb-3" controlId="sigla">
-                            <Form.Label>sigla</Form.Label>
-                            <Form.Control
-                                type="text"
+                            <Form.Label>Sigla</Form.Label>
+                            <Form.Control 
+                                type="text" 
                                 name="sigla"
                                 value={values.sigla}
                                 onChange={handleChange('sigla')}
                             />
                         </Form.Group>
-
-
-                        <Form.Group className="mb-3" controlId="UF">
+                        <Form.Group className="mb-3" controlId="uf">
                             <Form.Label>UF</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="UF"
-                                value={values.UF}
-                                onChange={handleChange('UF')}
+                            <Form.Control 
+                                type="text" 
+                                name="uf"
+                                value={values.uf}
+                                onChange={handleChange('uf')}
                             />
                         </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="Cidade">
+                        <Form.Group className="mb-3" controlId="cidade">
                             <Form.Label>Cidade</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="Cidade"
-                                value={values.Cidade}
-                                onChange={handleChange('Cidade')}
+                            <Form.Control 
+                                type="text" 
+                                name="cidade"
+                                value={values.cidade}
+                                onChange={handleChange('cidade')}
                             />
                         </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="Pais">
+                        <Form.Group className="mb-3" controlId="pais">
                             <Form.Label>País</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="Pais"
-                                value={values.Pais}
-                                onChange={handleChange('Pais')}
+                            <Form.Control 
+                                type="text" 
+                                name="pais"
+                                value={values.pais}
+                                onChange={handleChange('pais')}
                             />
                         </Form.Group>
-
-
-
-
                         <div className="text-center">
                             <Button onClick={handleSubmit} variant="success">
                                 <FaCheck /> Salvar
                             </Button>
+                            <Button onClick={deletar} variant="danger" className="ms-2">
+                                Deletar
+                            </Button>
                             <Link
                                 href="/aeroporto"
-                                className="btn btn-danger ms-2"
+                                className="btn btn-secondary ms-2"
                             >
                                 <MdOutlineArrowBack /> Voltar
                             </Link>
@@ -117,5 +106,5 @@ export default function Page() {
                 )}
             </Formik>
         </Pagina>
-    )
-
+    );
+}

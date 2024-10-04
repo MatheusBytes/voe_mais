@@ -4,9 +4,25 @@ import Link from "next/link";
 import { Table } from "react-bootstrap";
 import { FaPlusCircle } from "react-icons/fa";
 import Pagina from "../components/Pagina";
+import { FaRegEdit } from "react-icons/fa";
+import { useEffect, useState } from "react";
+
 
 export default function Page() {
-  const aeroporto = JSON.parse(localStorage.getItem("aeroporto")) || [];
+
+  const [aeroportos, setAeroporto] = useState([]);
+
+  useEffect(() => {
+    setAeroporto(JSON.parse(localStorage.getItem("aeroportos")) || []);
+  }, []);
+
+  function excluir(id) {
+    if (confirm("Deseja realmente excluir o registro?")) {
+      const dados = aeroportos.filter((item) => item.id != id);
+      localStorage.setItem("aeroporto", JSON.stringify(dados));
+      setAeroporto(dados);
+    }
+  }
 
   return (
     <Pagina titulo="aeroporto">
@@ -26,9 +42,21 @@ export default function Page() {
           </tr>
         </thead>
         <tbody>
-          {aeroporto.map((item) => (
+          {aeroportos.map((item) => (
             <tr>
               <td>1</td>
+              <td>
+                
+                <Link href={`/aeroporto/form/${item.id}`}>
+                  <FaRegEdit title="Editar" className="text-primary" />
+                </Link>
+
+                <AiOutlineDelete
+                  className="text-danger"
+                  title="Excluir"
+                  onClick={() => excluir(item.id)}
+                />
+              </td>
               <td>{item.nome}</td>
               <td>{item.sigla}</td>
               <td>{item.UF}</td>
