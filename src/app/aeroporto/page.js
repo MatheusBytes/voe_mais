@@ -10,7 +10,7 @@ export default function Page() {
 
   return (
     <Pagina titulo="aeroporto">
-      <Link href="/aeroporto/create" className="btn btn-primary mb-3 mt-3">
+      <Link href="/aeroporto/form" className="btn btn-primary mb-3 mt-3">
         <FaPlusCircle /> Novo
       </Link>
 

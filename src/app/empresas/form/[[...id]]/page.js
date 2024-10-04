@@ -19,23 +19,20 @@ export default function Page({params}) {
     const dados = empresas.find(item=>item.id == params.id)
     const empresa = dados || {nome: '', logo: '', site: ''}
 
-    
-    console.log(empresa)
 
     function salvar(dados){
 
-        Object.assign(empresa, dados)
-        // const i = empresas.findIndex(item=>item.id == params.id)
-        // empresas.splice(i, 1, dados)
+        if(empresa.id){
+            Object.assign(empresa, dados)
+
+        } else {
+            dados.id = v4()
+            empresas.push(dados)
+        }
+       
         localStorage.setItem('empresas', JSON.stringify(empresas))
         return route.push('/empresas')
-
-        // const empresas = JSON.parse(localStorage.getItem('empresas')) || []
-        
-        // dados.id = v4()
-        // empresas.push(dados)
-        // localStorage.setItem('empresas', JSON.stringify(empresas))
-        // return route.push('/empresas')
+    
     }
 
     return (
