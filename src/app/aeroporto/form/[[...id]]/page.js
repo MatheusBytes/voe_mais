@@ -30,15 +30,16 @@ export default function Page({ params }) {
   const [camposBrasil, setCamposBrasil] = useState(true);
 
   useEffect(() => {
-    apiLocalidade.get(`paises`).then((resultado) => {
-      setPaises(resultado.data);
+
+    apiLocalidade.get(`paises`).then(resultado => {
+        setPaises(resultado.data)
     })
 
-    apiLocalidade.get(`estados?orderBy=nome`).then((resultado) => {
-      setUfs(resultado.data);
+    apiLocalidade.get(`estados?orderBy=nome`).then(resultado => {
+        setUfs(resultado.data)
     })
 
-  }, []);
+}, [])
 
 
  
@@ -62,6 +63,16 @@ export default function Page({ params }) {
         {({ values, handleChange, handleSubmit }) => 
         
         {
+          useEffect(() => {
+            setCamposBrasil(values.pais == 'Brasil')
+        }, [values.pais])
+
+        useEffect(() => {
+            apiLocalidade.get(`estados/${values.uf}/municipios`).then(resultado => {
+                setCidades(resultado.data)
+            })
+        }, [values.uf])
+          
           return (  
 
             <Form>
@@ -87,12 +98,18 @@ export default function Page({ params }) {
   
               <Form.Group className="mb-3" controlId="cidade">
                 <Form.Label>Cidade</Form.Label>
-                <Form.Control
-                  type="text"
+                <Form.Select
                   name="cidade"
                   value={values.cidade}
                   onChange={handleChange("cidade")}
-                />
+                >
+                  <option value="">selecione</option>
+                  {cidades.map((item) => (
+                    <option key={item.nome} value={item.nome}>
+                       {item.nome}
+                    </option>
+                  ))}
+                </Form.Select>
               </Form.Group>
   
               {camposBrasil && <>
@@ -148,3 +165,4 @@ export default function Page({ params }) {
     </Pagina>
   );
 }
+
