@@ -4,6 +4,7 @@ import Pagina from "@/app/components/Pagina";
 import { Formik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { FaCheck } from "react-icons/fa";
 import { MdOutlineArrowBack } from "react-icons/md";
@@ -22,6 +23,14 @@ export default function Page({ params }) {
     preco: "",
     internacional: false,
   };
+
+  const [empresas, setEmpresas] = useState([])
+  const [origem, setOrigem] = useState([])
+  const [destino, setDestino] = useState([])
+
+  useEffect(() => {
+    setEmpresas(JSON.parse(localStorage.getItem("empresas")) || []);
+  }, []);
 
   function salvar(dados) {
     if (voo.id) {
@@ -49,6 +58,22 @@ export default function Page({ params }) {
                 onChange={handleChange("identificador")}
               />
             </Form.Group>
+
+            <Form.Group className="mb-3" controlId="pais">
+                <Form.Label>País</Form.Label>
+                <Form.Select
+                  name="pais"
+                  value={values.pais}
+                  onChange={handleChange("pais")}
+                >
+                  <option value="">selecione</option>
+                  {paises.map((item) => (
+                    <option key={item.sigla} value={item.nome}>
+                      {item.nome}
+                    </option>
+                  ))}
+                </Form.Select>
+              </Form.Group>
 
             <Form.Group className="mb-3" controlId="data_embarque">
               <Form.Label>Data de Embarque</Form.Label>
