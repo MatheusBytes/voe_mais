@@ -37,6 +37,7 @@ export default function Page() {
             <th>Documento</th>
             <th>Email</th>
             <th>Telefone</th>
+            <th>nascimento</th>
           </tr>
         </thead>
         <tbody>
@@ -57,6 +58,7 @@ export default function Page() {
               <td>{item.documento}</td>
               <td>{item.email}</td>
               <td>{item.telefone}</td>
+              <td>{item.data_nascimento}</td>
             </tr>
           ))}
         </tbody>

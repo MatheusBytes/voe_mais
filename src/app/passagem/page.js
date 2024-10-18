@@ -52,6 +52,7 @@ export default function Page() {
                 />
               </td>
               <td>{item.assento}</td>
+
               <td>{item.preco}</td>
             </tr>
           ))}

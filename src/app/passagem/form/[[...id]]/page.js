@@ -28,8 +28,8 @@ export default function Page({params}) {
             passagens.push(dados);
         }
 
-        localStorage.setItem('passagens', JSON.stringify(passagens));
-        return route.push('/passagens');
+        localStorage.setItem('passagem', JSON.stringify(passagens));
+        return route.push('/passagem');
     }
 
     return (
