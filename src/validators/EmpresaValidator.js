@@ -5,8 +5,8 @@ const EmpresaValidator = Yup.object().shape({
     .min(3, 'o mínimo de caracteres é 3 !')
     .max(50, 'o máximo de caracteres é 50 !')
     .required('Campo obrigatório '),
-  logo: Yup.string(),
-  site: Yup.string().email('Invalid email').required('Required'),
+  logo: Yup.string().required('campo obrigatório'),
+  site: Yup.string().required('campo obrigatório '),
 });
 
 export default EmpresaValidator;

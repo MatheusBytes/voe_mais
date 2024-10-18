@@ -60,9 +60,13 @@ export default function Page({params}) {
                                     name="nome" 
                                     value={values.nome}
                                     onChange={handleChange('nome')}
+                                    isValid={errors.nome}
                                 />
 
-                                <div className="text-danger"> {errors.nome}</div>
+                                <Form.Control.Feedback type="invalid"> 
+                                      {errors.nome}
+                                </Form.Control.Feedback>
+
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="logo">
                                 <Form.Label>Logo</Form.Label>
@@ -71,7 +75,9 @@ export default function Page({params}) {
                                     name="logo"
                                     value={values.logo}
                                     onChange={handleChange('logo')}
+                                    isValid={errors.logo}
                                 />
+                                <div className="text-danger"> {errors.logo}</div>
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="site">
                                 <Form.Label>Site</Form.Label>
@@ -80,7 +86,9 @@ export default function Page({params}) {
                                     name="site"
                                     value={values.site}
                                     onChange={handleChange('site')}
+                                    isValid={errors.site}
                                 />
+                                <div className="text-danger"> {errors.site}</div>
                             </Form.Group>
                             <div className="text-center">
                                 <Button onClick={handleSubmit} variant="success">
