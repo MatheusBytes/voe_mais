@@ -28,8 +28,8 @@ export default function Page({params}) {
             voos.push(dados);
         }
 
-        localStorage.setItem('voos', JSON.stringify(voos));
-        return route.push('/voos');
+        localStorage.setItem('voo', JSON.stringify(voos));
+        return route.push('/voo');
     }
 
     return (

@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 
 const PassagemValidator = Yup.object().shape({
-    numero: Yup.string()
+    numero: Yup.number()
         .required('Campo obrigatório'),
     classe: Yup.string()
         .required('Campo obrigatório'),
