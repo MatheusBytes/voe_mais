@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { Button, Form } from "react-bootstrap";
 import { FaCheck } from "react-icons/fa";
 import { MdOutlineArrowBack } from "react-icons/md";
+import { mask } from "remask";
 import { v4 } from "uuid";
 
 export default function Page({params}) {
@@ -43,6 +44,7 @@ export default function Page({params}) {
                     values,
                     handleChange,
                     handleSubmit,
+                    setFieldValue,
                     errors,
                 }) => (
                     <Form>
@@ -104,7 +106,7 @@ export default function Page({params}) {
                                 type="text" 
                                 name="telefone"
                                 value={values.telefone}
-                                onChange={handleChange('telefone')}
+                                onChange={(value) => {setFieldValue('telefone', mask(value.target.value, '(99) 99999-9999'))}}
                                 isInvalid={!!errors.telefone}
                             />
                             <Form.Control.Feedback type="invalid">
@@ -114,10 +116,10 @@ export default function Page({params}) {
                         <Form.Group className="mb-3" controlId="data_nascimento">
                             <Form.Label>Data de Nascimento</Form.Label>
                             <Form.Control 
-                                type="date" 
+                                type="text" 
                                 name="data_nascimento"
                                 value={values.data_nascimento}
-                                onChange={handleChange('data_nascimento')}
+                                onChange={(value) => {setFieldValue('data_nascimento', mask(value.target.value, '99/99/9999'))}}
                                 isInvalid={!!errors.data_nascimento}
                             />
                             <Form.Control.Feedback type="invalid">
