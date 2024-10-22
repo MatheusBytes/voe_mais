@@ -29,7 +29,7 @@ export default function Page({params}) {
             passageiros.push(dados);
         }
 
-        localStorage.setItem('passageiro', JSON.stringify(passageiros));
+        localStorage.setItem('passageiros', JSON.stringify(passageiros));
         return route.push('/passageiro');
     }
 
@@ -131,7 +131,7 @@ export default function Page({params}) {
                                 <FaCheck /> Salvar
                             </Button>
                             <Link
-                                href="/passageiros"
+                                href="/passageiro"
                                 className="btn btn-danger ms-2"
                             >
                                 <MdOutlineArrowBack /> Voltar
