@@ -43,6 +43,7 @@ export default function Page({params}) {
                     values,
                     handleChange,
                     handleSubmit,
+                    setFieldValue,
                     errors,
                 }) => (
                     <Form>

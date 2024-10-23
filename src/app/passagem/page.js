@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { Table } from "react-bootstrap";
 import { FaPlusCircle } from "react-icons/fa";
-import Pagina from "../components/Pagina";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FaRegEdit } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import Pagina from "../components/Pagina";
+
 
 export default function Page() {
   const [passagens, setPassagens] = useState([]);
@@ -52,7 +53,6 @@ export default function Page() {
                 />
               </td>
               <td>{item.assento}</td>
-
               <td>{item.preco}</td>
             </tr>
           ))}

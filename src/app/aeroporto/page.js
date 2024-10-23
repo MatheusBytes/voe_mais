@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { Table } from "react-bootstrap";
 import { FaPlusCircle } from "react-icons/fa";
-import Pagina from "../components/Pagina";
+
 import { AiOutlineDelete } from "react-icons/ai";
 import { FaRegEdit } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import Pagina from "../components/Pagina";
 
 export default function Page() {
   const [aeroportos, setAeroportos] = useState([]);
@@ -56,9 +57,9 @@ export default function Page() {
               </td>
               <td>{item.nome}</td>
               <td>{item.sigla}</td>
-              <td>{item.cidade}</td>
-              <td>{item.uf}</td>
               <td>{item.pais}</td>
+              <td>{item.uf}</td>
+              <td>{item.cidade}</td>
             </tr>
           ))}
         </tbody>
